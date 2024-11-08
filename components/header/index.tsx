@@ -10,6 +10,7 @@ import {
 
 import { Feather } from '@expo/vector-icons';
 import { colors } from "@/constants/color";
+import { router } from "expo-router";
 
 interface HeaderProps{
     step: string;
@@ -21,7 +22,7 @@ export function Header({ step, title }: HeaderProps) {
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.row}>
-                    <Pressable>
+                    <Pressable onPress={() => router.back()}>
                         <Feather name="arrow-left" size={24} color="#000" />
                     </Pressable>
                     <Text style={styles.text}>

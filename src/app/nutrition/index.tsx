@@ -43,11 +43,11 @@ export default function Nutrition() {
 
     async function handleShare() {
         try {
-            if(data && Object.keys(data).length === 0) return;
+            if (data && Object.keys(data).length === 0) return;
 
-            const supplements = `${data?.suplementos.map( item => `${item}`)}`
+            const supplements = `${data?.suplementos.map(item => `${item}`)}`
 
-            const foods = `${data?.refeicoes.map( item => `\n - Nome: ${item.nome}\n - Horário: ${item.horario}\n- Alimentos: ${item.alimentos.map( alimento => `${alimento}`)}`)}`
+            const foods = `${data?.refeicoes.map(item => `\n - Nome: ${item.nome}\n - Horário: ${item.horario}\n- Alimentos: ${item.alimentos.map(alimento => `${alimento}`)}`)}`
 
             const message = `Dieta: ${data?.nome} - Objetivo: ${data?.objetivo}\n\n ${foods}\n\n - Dica de Suplementos: ${supplements}`
 
@@ -72,7 +72,7 @@ export default function Nutrition() {
     if (error) {
         return (
             <View style={styles.loading}>
-                    <Text style={styles.loadingText}> Falha ao gerar sua dieta ! </Text>
+                <Text style={styles.loadingText}> Falha ao gerar sua dieta ! </Text>
                 <Link href="/">
                     <Text style={styles.loadingText}> Tente Novamente. . .</Text>
                 </Link>
@@ -124,13 +124,17 @@ export default function Nutrition() {
                                 ))}
                             </View>
 
-                            <View style={styles.suppplements}>
-                                <Text style={styles.foodName}>Dica de suplementos:
-                                    <MaterialCommunityIcons name='lightbulb-on' size={16} color="#000" />
+                            <View style={styles.supplements}>
+                                <Text style={styles.supplementText}>Dica de suplementos:
+                                    <View style={styles.supplementIcon}>
+                                        <MaterialCommunityIcons name='lightbulb-on' size={18} color="#000" />
+                                    </View>
                                 </Text>
+
+
                                 <View style={styles.supplementsName}>
                                     {data.suplementos.map(item => (
-                                        <Text key={item} >{item}</Text>
+                                        <Text key={item}> {item} </Text>
                                     ))}
                                 </View>
                             </View>
@@ -248,18 +252,28 @@ const styles = StyleSheet.create({
         marginBottom: 4,
         marginTop: 14,
     },
-    suppplements: {
+    supplements: {
         backgroundColor: colors.white,
         marginTop: 14,
         marginBottom: 14,
         padding: 14,
         borderRadius: 8,
-
+        
+    },
+    supplementText: {
+        backgroundColor: 'rgba(208,208,208,0.40)',
+        fontSize: 16,
+        fontWeight: 'bold',
+        padding: 8        
+    },
+    supplementIcon: {
+        width: '100%',
+        paddingLeft: 145
     },
     supplementsName: {
         backgroundColor: 'rgba(208,208,208,0.40)',
         padding: 8,
-        borderRadius: 8,
+        borderRadius: 8,        
     },
     button: {
         backgroundColor: colors.blue,
